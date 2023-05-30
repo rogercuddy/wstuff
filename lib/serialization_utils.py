@@ -38,7 +38,7 @@ class JsonSerializer(SerializingStrategy):
             str or dict: Serialized or deserialized data.
         """
         if deserialize:
-            if type(data) != str:
+            if not isinstance(data, str):
                 raise ValueError(f'Type: {type(data)} cannot be deserialized')
             return json.loads(data)
         return json.dumps(data)
@@ -50,7 +50,7 @@ class JsonSerializer(SerializingStrategy):
         Returns:
             str: JsonSerializer class in string format.
         """
-        return f"JsonSerializer()"
+        return "JsonSerializer()"
 
     def __repr__(self):
         """
@@ -59,7 +59,7 @@ class JsonSerializer(SerializingStrategy):
         Returns:
             str: JsonSerializer class in formal string format.
         """
-        return f"JsonSerializer()"
+        return "JsonSerializer()"
 
 
 class YamlSerializer(SerializingStrategy):
@@ -79,7 +79,7 @@ class YamlSerializer(SerializingStrategy):
             str or dict: Serialized or deserialized data.
         """
         if deserialize:
-            if type(data) != str:
+            if not isinstance(data, str):
                 raise ValueError(f'Type: {type(data)} cannot be deserialized')
             return yaml.full_load(data)
         return yaml.dump(data)
@@ -121,7 +121,7 @@ class PickleSerializer(SerializingStrategy):
             str or dict: Serialized or deserialized data.
         """
         if deserialize:
-            if type(data) != bytes:
+            if not isinstance(data, bytes):
                 raise ValueError(f'Type: {type(data)} cannot be deserialized')
             return pickle.load(io.BytesIO(data))
         return pickle.dumps(data)
